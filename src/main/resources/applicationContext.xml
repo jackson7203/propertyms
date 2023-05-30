@@ -64,45 +64,45 @@
     </aop:config>
 
 
-    <!--整合shiro的配置内容-->
-    <!--SecurityManager-->
-<!--    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">-->
-<!--        <property name="realm" ref="realm"/>-->
-<!--    </bean>-->
+<!--    整合shiro的配置内容-->
+<!--    SecurityManager-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="realm"/>
+    </bean>
 
-<!--    &lt;!&ndash;创建自定义realm类对象&ndash;&gt;-->
-<!--    <bean id="realm" class="com.partner.propertyms.realm.MyRealm">-->
-<!--        <property name="credentialsMatcher" ref="credentialsMatcher"/>-->
-<!--    </bean>-->
+    <!--创建自定义realm类对象-->
+    <bean id="realm" class="com.partner.propertyms.realm.MyRealm">
+        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+    </bean>
 
-<!--    &lt;!&ndash;创建密码匹配器&ndash;&gt;-->
-<!--    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
-<!--        <property name="hashAlgorithmName" value="MD5"/>-->
-<!--        <property name="hashIterations" value="1024"/>-->
-<!--    </bean>-->
+    <!--创建密码匹配器-->
+    <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+        <property name="hashAlgorithmName" value="MD5"/>
+        <property name="hashIterations" value="1024"/>
+    </bean>
 
-<!--    &lt;!&ndash;shiro过滤工厂: 设置过滤的规则&ndash;&gt;-->
-<!--    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">-->
-<!--        <property name="securityManager" ref="securityManager"/>-->
+    <!--shiro过滤工厂: 设置过滤的规则-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
 
-<!--     &lt;!&ndash; 设置过滤器&ndash;&gt;-->
-<!--        <property name="filterChainDefinitions">-->
-<!--            <value>-->
-<!--                &lt;!&ndash; 放行跳转到登录的方法  &ndash;&gt;-->
-<!--                /login=anon-->
-<!--                &lt;!&ndash; 其他的页面都需要认证 &ndash;&gt;-->
-<!--                /**=authc-->
-<!--            </value>-->
-<!--        </property>-->
+     <!-- 设置过滤器-->
+        <property name="filterChainDefinitions">
+            <value>
+                <!-- 放行跳转到登录的方法  -->
+                /login=anon
+                <!-- 其他的页面都需要认证 -->
+                /**=authc
+            </value>
+        </property>
 
-<!--&lt;!&ndash;   未登录过滤器&ndash;&gt;-->
-<!--        <property name="filters">-->
-<!--            <map>-->
-<!--                <entry key="authc">-->
-<!--&lt;!&ndash;                    自定义过滤器所在路径&ndash;&gt;-->
-<!--                    <bean class="com.partner.eshop.utils.LoginFilter"/>-->
-<!--                </entry>-->
-<!--            </map>-->
-<!--        </property>-->
-<!--    </bean>-->
+<!--   未登录过滤器-->
+        <property name="filters">
+            <map>
+                <entry key="authc">
+<!--                    自定义过滤器所在路径-->
+                    <bean class="com.partner.propertyms.utils.LoginFilter"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
 </beans>
